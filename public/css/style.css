@@ -10,20 +10,33 @@ h1 {
     margin: 1rem;
 }
 
+table {
+    margin: 1rem;
+    width: 80%;
+}
+
+table, 
+th {
+    border: 1px solid lightgrey;
+}
 .cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
 .card {
-    flex-basis: 31%;
-    margin: 1rem 0.4rem;
-    padding: 1rem 0.4rem 2.5rem 0.4rem;
+
+    height: 30px;
+    margin: 2rem;
+    padding: 2rem;
     border: solid 1px lightgrey;
-    border-radius: 15px;
+
+    background: lightblue;
     box-shadow: 3px 2px 6px lightgrey;
+    font-size: large;
 }
 
 .card__email {

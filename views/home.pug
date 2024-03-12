@@ -6,3 +6,15 @@ html
         link(rel="stylesheet", href="/css/style.css")
     body    
         h1 HubSpot I: Foundations Final Project
+        table
+            tr.card
+                th NAME
+                th TYPE
+                th STACK
+                th DESCRIPTION
+            each entry in data
+                tr
+                    th #{entry.properties.name}
+                    th #{entry.properties.type}
+                    th #{entry.properties.stack}
+                    th #{entry.properties.description}
