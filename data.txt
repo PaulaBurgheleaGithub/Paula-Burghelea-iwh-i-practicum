@@ -986,3 +986,53 @@ HTTP 200
     }
   ]
 }
+
+/crm/v3/objects/{objectType}/{objectId}
+HTTP 200
+
+{
+  "results": [
+    {
+      "id": "3726440141",
+      "properties": {
+        "hs_createdate": "2024-03-11T15:17:33.900Z",
+        "hs_lastmodifieddate": "2024-03-11T15:55:00.703Z",
+        "hs_object_id": "3726440141",
+        "name": "MyCupOfLatte",
+        "stack": "js",
+        "type": "web"
+      },
+      "createdAt": "2024-03-11T15:17:33.900Z",
+      "updatedAt": "2024-03-11T15:55:00.703Z",
+      "archived": false
+    },
+    {
+      "id": "3726483658",
+      "properties": {
+        "hs_createdate": "2024-03-11T15:24:21.701Z",
+        "hs_lastmodifieddate": "2024-03-11T15:54:38.281Z",
+        "hs_object_id": "3726483658",
+        "name": "Travellette",
+        "stack": "react",
+        "type": "mobile"
+      },
+      "createdAt": "2024-03-11T15:24:21.701Z",
+      "updatedAt": "2024-03-11T15:54:38.281Z",
+      "archived": false
+    },
+    {
+      "id": "3726483662",
+      "properties": {
+        "hs_createdate": "2024-03-11T15:25:49.008Z",
+        "hs_lastmodifieddate": "2024-03-11T15:54:17.407Z",
+        "hs_object_id": "3726483662",
+        "name": "LoveScottish",
+        "stack": "shopify",
+        "type": "web"
+      },
+      "createdAt": "2024-03-11T15:25:49.008Z",
+      "updatedAt": "2024-03-11T15:54:17.407Z",
+      "archived": false
+    }
+  ]
+}
