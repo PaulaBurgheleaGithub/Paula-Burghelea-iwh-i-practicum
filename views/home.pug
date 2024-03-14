@@ -26,8 +26,17 @@ html
                 th STACK
                 th DESCRIPTION
             each entry in data
-                tr
-                    th #{entry.properties.name}
-                    th #{entry.properties.type}
-                    th #{entry.properties.stack}
-                    th #{entry.properties.description}
+                - let id = `${entry.id}`;
+                    tr
+                        th
+                            a(href=`/update?id=${id}`)
+                                p #{entry.properties.name}
+                        th
+                            a(href=`/update?id=${id}`)
+                                p #{entry.properties.type}
+                        th
+                            a(href=`/update?id=${id}`)
+                                p #{entry.properties.stack}
+                        th
+                            a(href=`/update?id=${id}`)
+                                p #{entry.properties.description}

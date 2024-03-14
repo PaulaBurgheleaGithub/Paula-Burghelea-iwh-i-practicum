@@ -21,13 +21,17 @@ html(lang="en")
                     a(href='/update-cobj') Update
 
         .form-wrapper
-            form(action="/new-cobj" method="POST")
-                label(for="newProject") New Project
-                input(type="text" name="newProject" required)
-                label(for="newProject") Type
-                input(type="text" name="type" required)
-                label(for="stack") Stack
-                input(type="text" name="stack" required)
-                label(for="description") Description
-                input(type="text" name="description" required)
+            p Project Name: #{name}
+            p Type: #{type}
+            p Stack: #{stack}
+            p Description: #{description}
+            form(method="POST")
+                label(for="name") New Project Name
+                input(type="text" name="name")
+                label(for="type") New Type
+                input(type="text" name="type")
+                label(for="stack") New Stack
+                input(type="text" name="stack")
+                label(for="description") New Description
+                input(type="text" name="description")
                 input(type="submit" value="Submit")

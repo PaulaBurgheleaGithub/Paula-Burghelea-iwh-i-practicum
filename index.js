@@ -30,50 +30,74 @@ app.get('/', async (req, res) => {
     try {
         const response = await axios.get(getObjects, { headers });
         const data = response.data.results;
-        // console.log(data);
-        //res.json(data);
+        console.log("data received");
         res.render('home', { title, data});
+    } catch(err) {
+        console.error(err);
+    }
+});
+
+
+
+// TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
+
+app.get('/update', async (req, res) => {
+    const title = 'Update Custom Object Form | Integrating With HubSpot I Practicum'
+    // http://localhost:3000/update?email=rick@crowbars.net
+    const objectType = "2-124824394";
+    const id = req.query.id;
+    const properties = ["name, type, stack, description"];
+
+    const getObject = `${BASE_URL}/crm/v3/objects/${objectType}/${id}?properties=${properties}`;
+    const headers = {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        const response = await axios.get(getObject, { headers });
+        const data = response.data;
+        console.log("project info received");
+        // res.json(data);
+        res.render('update', {name: data.properties.name, type: data.properties.type, stack: data.properties.stack, description: data.properties.description, title: title});
         
     } catch(err) {
         console.error(err);
     }
 });
 
-// TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
-
-app.get("/update-cobj", async (req, res) => {
-    const title = 'Update Custom Object Form | Integrating With HubSpot I Practicum'
-    try {
-        await res.render('update', { title });
-    } catch(err) {
-        console.error(err);
-    }
-    
-});
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
-
-/** 
-* * This is sample code to give you a reference for how you should structure your calls. 
-
-* * App.get sample
-app.get('/contacts', async (req, res) => {
-    const contacts = 'https://api.hubspot.com/crm/v3/objects/contacts';
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
+app.post('/update-cobj', async (req, res) => {
+    const updateProps = {
+        properties: {
+            "name": req.body.name,
+            "type": req.body.type,
+            "stack": req.body.stack,
+            "description": req.body.description,
+        }
     }
-    try {
-        const resp = await axios.get(contacts, { headers });
-        const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });      
-    } catch (error) {
-        console.error(error);
+
+    const objectType = "2-124824394";
+    const id = req.query.id;
+    const updateProjects = `${BASE_URL}/crm/v3/objects/${objectType}/${id}`;
+    
+    const headers = {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+
+    try { 
+        await axios.patch(updateProjects, updateProps, { headers } );
+        res.redirect('back');
+    } catch(err) {
+        console.error(err);
     }
 });
 
+/** 
 * * App.post sample
 app.post('/update', async (req, res) => {
     const update = {

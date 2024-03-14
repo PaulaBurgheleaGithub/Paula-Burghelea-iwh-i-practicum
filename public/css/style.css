@@ -4,6 +4,12 @@ body, * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    color: #000;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 h1 {
@@ -24,12 +30,8 @@ ul {
     gap: 10px
 }
 
-ul > li > a {
-    display: inline-block;
-    text-decoration: none;
-    color: #000;
-}
-a:hover {
+nav ul li a:hover,
+th:hover {
     color: aqua;
 }
 
@@ -38,16 +40,17 @@ table {
     width: 80%;
 }
 
-table, 
-th {
+table {
     border: 1px solid lightgrey;
 }
 
 th:hover {
+    color: inherit;
     cursor: pointer;
     background: aqua;
     box-shadow: 3px 2px 6px lightgrey;
 }
+
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -61,7 +64,6 @@ th:hover {
     margin: 2rem;
     padding: 2rem;
     border: solid 1px lightgrey;
-
     background: lightblue;
     box-shadow: 3px 2px 6px lightgrey;
     font-size: large;
