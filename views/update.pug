@@ -7,31 +7,32 @@ html(lang="en")
     body
         nav
             div
-                h1 HubSpot I: Foundations Final Project
+                h1 UPDATE PROJECT: #{name}
 
             input(
                 type='text'
                 name='search'
-                placeholder='search project...'
+                placeholder='type project name...'
             ) 
             ul
                 li
                     a(href='/') Home
                 li
-                    a(href='/update-cobj') Update
+                    a(href='/update') Update
 
         .form-wrapper
-            p Project Name: #{name}
-            p Type: #{type}
-            p Stack: #{stack}
-            p Description: #{description}
+            p.card Name: #{name}
+            p.card Type: #{type}
+            p.card Stack: #{stack}
+            p.card Description: #{description}
             form(method="POST")
-                label(for="name") New Project Name
-                input(type="text" name="name")
+                label(for="newName") New Project Name
+                input(type="text" name="newName")
                 label(for="type") New Type
                 input(type="text" name="type")
                 label(for="stack") New Stack
                 input(type="text" name="stack")
                 label(for="description") New Description
                 input(type="text" name="description")
+
                 input(type="submit" value="Submit")

@@ -12,13 +12,13 @@ html
             input(
                 type='text'
                 name='search'
-                placeholder='search project...'
+                placeholder='type project name...'
             ) 
             ul
                 li
                     a(href='/') Home
                 li
-                    a(href='/update-cobj') Update
+                    a(href='/update') Update
         table
             tr.card
                 th NAME
@@ -29,14 +29,14 @@ html
                 - let id = `${entry.id}`;
                     tr
                         th
-                            a(href=`/update?id=${id}`)
+                            a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.name}
                         th
-                            a(href=`/update?id=${id}`)
+                            a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.type}
                         th
-                            a(href=`/update?id=${id}`)
+                            a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.stack}
                         th
-                            a(href=`/update?id=${id}`)
+                            a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.description}

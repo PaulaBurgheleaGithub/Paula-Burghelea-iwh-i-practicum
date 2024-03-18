@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
-app.get('/update', async (req, res) => {
+app.get('/update-cobj', async (req, res) => {
     const title = 'Update Custom Object Form | Integrating With HubSpot I Practicum'
     // http://localhost:3000/update?email=rick@crowbars.net
     const objectType = "2-124824394";
@@ -71,14 +71,14 @@ app.get('/update', async (req, res) => {
 
 // * Code for Route 3 goes here
 app.post('/update-cobj', async (req, res) => {
-    const updateProps = {
+    const data = {
         properties: {
-            "name": req.body.name,
+            "name": req.body.newName,
             "type": req.body.type,
             "stack": req.body.stack,
             "description": req.body.description,
         }
-    }
+    };
 
     const objectType = "2-124824394";
     const id = req.query.id;
@@ -90,7 +90,7 @@ app.post('/update-cobj', async (req, res) => {
     };
 
     try { 
-        await axios.patch(updateProjects, updateProps, { headers } );
+        await axios.patch(updateProjects, data, { headers } );
         res.redirect('back');
     } catch(err) {
         console.error(err);
