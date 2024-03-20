@@ -51,6 +51,35 @@ th:hover {
     box-shadow: 3px 2px 6px lightgrey;
 }
 
+.information {
+    width: 20px;
+    border-radius: 50%;
+    background: aqua;
+    border-style: none;
+}
+
+.information:hover {
+    background: lightblue;
+}
+
+[popover] {
+    position: absolute;
+    inset: unset;
+    bottom: anchor(top);
+    left: anchor(center);
+    /* top: 120px;
+    left: 220px; */
+    translate: -50%;
+    margin: 0.25rem 0; 
+}
+
+.first__col {
+    position: relative;
+    display: flex;
+    gap: 5px;
+    justify-content:space-between;
+}
+
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -87,6 +116,7 @@ th:hover {
     padding: 5px 0 0; /* stupid p default positioning and I don't want to use flex to center it */
     text-align: center;
 }
+
 label, input {
     margin-top: 5px;
     display: block;
@@ -102,4 +132,16 @@ input[type="submit"] {
     border: none;
     padding: .375rem 1rem;
     margin-top: 10px;
+}
+
+.delete_btn {
+    width: 20px;
+    height: 20px;
+    border-style: none;
+    border-radius: 50%;
+    background: red;
+}
+
+.delete_btn:hover {
+    cursor: pointer;
 }

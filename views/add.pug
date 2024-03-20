@@ -7,7 +7,7 @@ html(lang="en")
     body
         nav
             div
-                h1 UPDATE PROJECT: #{name}
+                h1 ADD NEW PROJECT
 
             input(
                 type='text'
@@ -18,13 +18,13 @@ html(lang="en")
                 li
                     a(href='/') Home
                 li
-                    a(href='/add') Add New
+                    a(href='/add') Add
 
         .form-wrapper
-            p.card Name: #{name}
-            p.card Type: #{type}
-            p.card Stack: #{stack}
-            p.card Description: #{description}
+            //- p.card Name: #{name}
+            //- p.card Type: #{type}
+            //- p.card Stack: #{stack}
+            //- p.card Description: #{description}
             form(method="POST")
                 label(for="newName") New Project Name
                 input(type="text" name="newName")

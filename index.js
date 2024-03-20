@@ -30,7 +30,6 @@ app.get('/', async (req, res) => {
     try {
         const response = await axios.get(getObjects, { headers });
         const data = response.data.results;
-        console.log("data received");
         res.render('home', { title, data});
     } catch(err) {
         console.error(err);
@@ -59,12 +58,13 @@ app.get('/update-cobj', async (req, res) => {
         const data = response.data;
         console.log("project info received");
         // res.json(data);
-        res.render('update', {name: data.properties.name, type: data.properties.type, stack: data.properties.stack, description: data.properties.description, title: title});
+        res.render('update', {name: data.properties.name, type: data.properties.type, stack: data.properties.stack, description: data.properties.description, title});
         
     } catch(err) {
         console.error(err);
     }
 });
+
 
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
@@ -91,38 +91,97 @@ app.post('/update-cobj', async (req, res) => {
 
     try { 
         await axios.patch(updateProjects, data, { headers } );
-        res.redirect('back');
+        // res.redirect('/');
     } catch(err) {
         console.error(err);
     }
 });
 
-/** 
-* * App.post sample
-app.post('/update', async (req, res) => {
-    const update = {
-        properties: {
-            "favorite_book": req.body.newVal
-        }
-    }
 
-    const email = req.query.email;
-    const updateContact = `https://api.hubapi.com/crm/v3/objects/contacts/${email}?idProperty=email`;
+app.get('/add',async (req, res) => {
+    const title = 'Add Custom Object Form | Integrating With HubSpot I Practicum';
+    // const data = {
+    //     properties: {
+    //         "name": req.body.newName,
+    //         "type": req.body.type,
+    //         "stack": req.body.stack,
+    //         "description": req.body.description,
+    //     }
+    // };
+
+    const objectType = '2-124824394';
+    const getProject = `${BASE_URL}/crm/v3/objects/${objectType}`;
     const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+    try { 
+        // await axios.post(newProject, { headers } );
+        const response = await axios.get(getProject, { headers });
+        const data = response.data;
+        res.render('add', {title, data});
+    } catch(err) {
+        console.error(err);
+    }
+});
+
+app.post('/add', async (req, res) => {
+    const data = {
+        properties: {
+            "name": req.body.newName,
+            "type": req.body.type,
+            "stack": req.body.stack,
+            "description": req.body.description,
+        }
+    };
+
+    const objectType = "2-124824394";
+    const newProject = `${BASE_URL}/crm/v3/objects/${objectType}`;
+    
+    const headers = {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
     };
 
     try { 
-        await axios.patch(updateContact, update, { headers } );
-        res.redirect('back');
+        // TO DO - check if the name already exists in the entries of the project then run the post call
+        await axios.post(newProject, data, { headers } );
+        // res.send("New project successfully added!")
+        res.redirect('/');
+    } catch(err) {
+        //TO DO - Need to word this error better
+        //res.send(err.response.data.message.split(".")[1])
+        console.error(err);
+    }
+});
+
+
+app.get('/delete',async (req, res) => {
+    const title = 'Add Custom Object Form | Integrating With HubSpot I Practicum';
+    // const data = {
+    //     properties: {
+    //         "name": req.body.newName,
+    //         "type": req.body.type,
+    //         "stack": req.body.stack,
+    //         "description": req.body.description,
+    //     }
+    // };
+
+    const objectType = '2-124824394';
+    const getProject = `${BASE_URL}/crm/v3/objects/${objectType}`;
+    const headers = {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+    try { 
+        // await axios.post(newProject, { headers } );
+        const response = await axios.get(getProject, { headers });
+        const data = response.data;
+        res.render('add', {title, data});
     } catch(err) {
         console.error(err);
     }
-
 });
-*/
-
 
 // * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));

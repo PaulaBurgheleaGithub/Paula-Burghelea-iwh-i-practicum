@@ -18,19 +18,39 @@ html
                 li
                     a(href='/') Home
                 li
-                    a(href='/update') Update
+                    a(href='/add') Add New
         table
             tr.card
+                th DATE
                 th NAME
                 th TYPE
                 th STACK
                 th DESCRIPTION
+                th DELETE
             each entry in data
                 - let id = `${entry.id}`;
+                - let description = `${entry.properties.description}`;
+                - let createdDate = `${entry.createdAt.split("T")[0]}`;
                     tr
                         th
                             a(href=`/update-cobj?id=${id}`)
+                                p #{createdDate}
+                        th.first__col
+                            a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.name}
+                            button.information(
+                                popovertarget=`${id}`
+                                popovertargetaction 
+                                id=`${id}`
+                                type='button'
+                                ) i
+                            div(
+                                id=`${id}`
+                                popover="manual"
+                                anchor=`${id}`
+                            )
+                                p #{description}
+                                p Created at #{createdDate}
                         th
                             a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.type}
@@ -40,3 +60,6 @@ html
                         th
                             a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.description}
+                        th
+                            a(href=`/delete-obj?objectId=${id}`)
+                                button.delete_btn -
