@@ -42,7 +42,7 @@ app.get('/', async (req, res) => {
 
 app.get('/update-cobj', async (req, res) => {
     const title = 'Update Custom Object Form | Integrating With HubSpot I Practicum'
-    // http://localhost:3000/update?email=rick@crowbars.net
+    // http://localhost:3000/update-cobj?id=372324356
     const objectType = "2-124824394";
     const id = req.query.id;
     const properties = ["name, type, stack, description"];
@@ -100,14 +100,6 @@ app.post('/update-cobj', async (req, res) => {
 
 app.get('/add',async (req, res) => {
     const title = 'Add Custom Object Form | Integrating With HubSpot I Practicum';
-    // const data = {
-    //     properties: {
-    //         "name": req.body.newName,
-    //         "type": req.body.type,
-    //         "stack": req.body.stack,
-    //         "description": req.body.description,
-    //     }
-    // };
 
     const objectType = '2-124824394';
     const getProject = `${BASE_URL}/crm/v3/objects/${objectType}`;
@@ -157,27 +149,22 @@ app.post('/add', async (req, res) => {
 
 
 app.get('/delete',async (req, res) => {
-    const title = 'Add Custom Object Form | Integrating With HubSpot I Practicum';
-    // const data = {
-    //     properties: {
-    //         "name": req.body.newName,
-    //         "type": req.body.type,
-    //         "stack": req.body.stack,
-    //         "description": req.body.description,
-    //     }
-    // };
+    const title = 'Delete Project | Integrating With HubSpot I Practicum';
 
-    const objectType = '2-124824394';
-    const getProject = `${BASE_URL}/crm/v3/objects/${objectType}`;
+    const objectType = "2-124824394";
+    const id = req.query.objectId;
+    const name = req.query.name
+
+    const getProject = `${BASE_URL}/crm/v3/objects/${objectType}/${id}`;
     const headers = {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
     };
     try { 
-        // await axios.post(newProject, { headers } );
-        const response = await axios.get(getProject, { headers });
+        // const name = req.query.name;
+        const response = await axios.delete(getProject, { headers });
         const data = response.data;
-        res.render('add', {title, data});
+        res.render('delete', {message: `Project successfully deleted!`, title});
     } catch(err) {
         console.error(err);
     }

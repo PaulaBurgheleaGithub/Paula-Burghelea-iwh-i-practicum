@@ -18,7 +18,7 @@ html
                 li
                     a(href='/') Home
                 li
-                    a(href='/add') Add New
+                    a(href='/add') New Project
         table
             tr.card
                 th DATE
@@ -29,6 +29,7 @@ html
                 th DELETE
             each entry in data
                 - let id = `${entry.id}`;
+                - let name = `${entry.properties.name}`;
                 - let description = `${entry.properties.description}`;
                 - let createdDate = `${entry.createdAt.split("T")[0]}`;
                     tr
@@ -38,19 +39,20 @@ html
                         th.first__col
                             a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.name}
-                            button.information(
-                                popovertarget=`${id}`
-                                popovertargetaction 
-                                id=`${id}`
-                                type='button'
-                                ) i
-                            div(
-                                id=`${id}`
-                                popover="manual"
-                                anchor=`${id}`
-                            )
-                                p #{description}
-                                p Created at #{createdDate}
+    
+                            //- button.information(
+                            //-     popovertarget=`${id}`
+                            //-     popovertargetaction 
+                            //-     id=`${id}`
+                            //-     type='button'
+                            //-     ) i
+                            //- div(
+                            //-     id=`${id}`
+                            //-     popover="manual"
+                            //-     anchor=`${id}`
+                            //- )
+                            //-     p #{description}
+                            //-     p Created at #{createdDate}
                         th
                             a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.type}
@@ -61,5 +63,5 @@ html
                             a(href=`/update-cobj?id=${id}`)
                                 p #{entry.properties.description}
                         th
-                            a(href=`/delete-obj?objectId=${id}`)
+                            a(href=`/delete?objectId=${id}?name=${name}`)
                                 button.delete_btn -
